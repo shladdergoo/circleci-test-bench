@@ -47,7 +47,21 @@ jobs:
    docker:
      - image: circleci/openjdk:8-jdk-browsers
    steps:
-    - run: echo 'deploying'
+    - run: echo 'deploying to automated test'
+
+ gather-test-results:
+   docker:
+     - image: circleci/openjdk:8-jdk-browsers
+   steps:
+    - run: echo 'gathering test results'
+
+ deploy-to-prod:
+   docker:
+     - image: circleci/openjdk:8-jdk-browsers
+   steps:
+    - run: echo 'deploying to prod'
+
+
 
 workflows:
  version: 2
@@ -57,3 +71,13 @@ workflows:
      - deploy-to-automated-test:
          requires:
            - build
+     - hold:
+          type: approval
+          requires:
+           - deploy-to-automated-test
+     - gather-test-results:
+         requires:
+           - hold
+     - deploy-to-prod:
+         requires:
+           - hold
