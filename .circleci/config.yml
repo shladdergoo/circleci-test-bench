@@ -71,13 +71,17 @@ workflows:
      - deploy-to-automated-test:
          requires:
            - build
-     - hold:
+     - hold-test-results:
+          type: approval
+          requires:
+           - deploy-to-automated-test
+     - hold-deploy-prod:
           type: approval
           requires:
            - deploy-to-automated-test
      - gather-test-results:
          requires:
-           - hold
+           - hold-test-results
      - deploy-to-prod:
          requires:
-           - hold
+           - hold-deploy-prod
