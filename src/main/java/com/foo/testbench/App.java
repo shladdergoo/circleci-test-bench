@@ -4,7 +4,7 @@ package com.foo.testbench;
  * Hello world!
  */
 public final class App {
-    private App() {
+    public App() {
     }
 
     /**

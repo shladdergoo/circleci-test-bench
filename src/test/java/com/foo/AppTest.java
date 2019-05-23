@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+import com.foo.testbench.App;
+
 /**
  * Unit test for simple App.
  */
@@ -13,6 +15,9 @@ public class AppTest {
      */
     @Test
     public void testApp() {
-        assertTrue(true);
+
+        App app = new App();
+
+        assertNotNull(app);
     }
 }
