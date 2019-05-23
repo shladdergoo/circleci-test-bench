@@ -35,7 +35,6 @@ jobs:
      - run: mvn versions:set -DnewVersion="1.0.${CIRCLE_BUILD_NUM}"
      - run: mvn -Dmaven.test.skip=true package
      - store_artifacts:
-         # Circle CI 2.0 doesn't currently support env variables in places like this. When it does, we should use $PROJECT_VERSION
          path:  target/circleci-test-bench-1.0.0.jar
      - persist_to_workspace:
          root: target
@@ -60,8 +59,6 @@ jobs:
      - image: circleci/openjdk:8-jdk-browsers
    steps:
     - run: echo 'deploying to prod'
-
-
 
 workflows:
  version: 2
