@@ -72,10 +72,10 @@ workflows:
           type: approval
           requires:
            - deploy-to-automated-test
-     - hold-deploy-prod:
-          type: approval
-          requires:
-           - deploy-to-automated-test
+    #  - hold-deploy-prod:
+    #       type: approval
+    #       requires:
+    #        - deploy-to-automated-test
      - gather-test-results:
          requires:
            - hold-test-results
